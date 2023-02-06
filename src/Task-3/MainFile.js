@@ -63,7 +63,7 @@ function MainFile() {
                 <input type="checkbox" onChange={() => toggleComplete(todo.id)} checked={todo.completed} />
 
       
-                {todoEditing === todo.id ? (<button onClick={() => editTodo(todo.id)}>Submit Edits</button> ) :
+                {todoEditing === todo.id ? (<button onClick={() => editTodo(todo.id)}>Update</button> ) :
                ( <button onClick={() => setTodoEditing(todo.id)}> Edit</button>) }
 
             </div>)}

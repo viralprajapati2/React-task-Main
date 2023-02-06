@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
-import Home from '../home';
-import AboutUs from '../About Us';
-import Contact from '../Contact';
-import Products from '../Products';
-import NotFound from '../notfound';
+import Home from './home';
+import AboutUs from './About Us';
+import Contact from './Contact';
+import Products from './Products';
+import NotFound from './notfound';
 
 function Navbar(){
     return (<>
