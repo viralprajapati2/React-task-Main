@@ -10,9 +10,10 @@ const SignUp = () => {
         Email: "",
         MobileNumber: "",
         Address: "",
+        gender: "",
+        acceptTerms: "",
     });
-    const [gender, setGender] = useState('');
-    const [genderError, setGenderError] = useState("");
+    const [gender] = useState("");
     const [acceptTerms, setAcceptTerms] = useState(false);
 
     const inputs = [
@@ -22,7 +23,7 @@ const SignUp = () => {
             name: "FirstName",
             type: "text",
             placeholder: "FirstName",
-            errorMessage: "FirstName should be 3-16 characters and shouldn't be any special character ",
+            errorMessage: "FirstName should be 2-16 characters and shouldn't be any special character ",
             label: "FirstName:",
             pattern: "^[A-Za-z0-9]{2,16}$",
             required: true,
@@ -68,16 +69,36 @@ const SignUp = () => {
             errorMessage: "Mobile number should contain 10 digits",
             label: "MobileNumber:",
             pattern: "^[0-9]{10}$",
+            maxLength: 10,
             required: true,
         },
     ]
+
+    const radioButtons = {
+        male: {
+            id: "male",
+            value: gender,
+            onChange: () => setValues({ ...values, gender: "male" }),
+            required: true
+        },
+        female: {
+            id: "female",
+            value: gender,
+            onChange: () => setValues({ ...values, gender: "Female" }),
+            required: true
+        },
+        other: {
+            id: "other",
+            value: gender,
+            onChange: () => setValues({ ...values, gender: "Other" }),
+            required: true
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = new FormData(e.target)
         console.log(Object.fromEntries(data.entries()));
-        if (validateGender()) {
-        }
         if (validateAcceptTerms()) {
         }
     };
@@ -86,51 +107,42 @@ const SignUp = () => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
 
-    const handleGenderChange = (event) => {
-        setGender(event.target.value);
-    };
-
-    const validateGender = () => {
-        if (!gender) {
-            setGenderError("Please select a gender");
-            return false;
-        }
-        setGenderError("");
-        return true;
-    };
-
     const [acceptTermsError, setAcceptTermsError] = useState("");
 
     const validateAcceptTerms = () => {
         if (!acceptTerms) {
             setAcceptTermsError("Please accept the terms and conditions");
+            setValues({ ...values, acceptTerms: "unChecked" });
             return false;
+        }
+        else {
+            setValues({ ...values, acceptTerms: "Checked" });
         }
         setAcceptTermsError("");
         return true;
     };
 
     console.log(values);
-    console.log(gender);
 
     return <div className='signup'>
         <form onSubmit={handleSubmit}>
             <h2>Sign Up Page</h2>
             {inputs.map(input => (
-                <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
+                <FormInput key={input.id}
+                    {...input} value={values[input.name]} onChange={onChange} >
+                </FormInput>
             ))}
-            <br />
-            <label htmlFor="gender">Gender:</label>
-            <select id="gender" value={gender} onChange={handleGenderChange}>
-                <option value="">Please select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select>
-            {genderError && <div className="error" style={{ color: "red" }}>{genderError}</div>}
-            <br />
-            <br />
-            <input type="checkbox" checked={acceptTerms} onChange={(e) => setAcceptTerms(e.target.checked)} style={{ width: "1rem", height: "1rem" }} />I accept Terms & Conditions
+            <label htmlFor='Gender'>Gender : </label>
+            <div className='gender'>
+                {Object.keys(radioButtons).map(key => (
+                    <div key={key}>
+                        <input type='radio' name="Gender" id={radioButtons[key].id} value={radioButtons[key].value} onChange={radioButtons[key].onChange} required={radioButtons[key].required} />
+                        <label htmlFor={radioButtons[key].id}>{key}</label>
+                    </div>
+                ))}
+            </div>
+
+            <input type="checkbox" onSubmit={validateAcceptTerms} onChange={(e) => setAcceptTerms(e.target.checked)} style={{ width: "1rem", height: "1rem" }} />I accept Terms & Conditions
             {acceptTermsError && <div className="error" style={{ color: "red" }}>{acceptTermsError}</div>}
             <button className='btn'>Submit</button>
         </form>
