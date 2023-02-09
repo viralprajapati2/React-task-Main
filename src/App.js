@@ -3,7 +3,8 @@ import React from 'react';
 // import Main from '../src/Components/Main';
 // import Footer from '../src/Components/Footer';
 // import MainFile from './Task-3/MainFile';
-import SignUp from './Task-4/SignUp';
+// import SignUp from './Task-4/SignUp';
+import Form from './Task-5/Form';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Main />
       <Footer /> */}
       {/* <MainFile /> */}
-      <SignUp />
+      {/* <SignUp /> */}
+      <Form />
     </>
   );
 }
