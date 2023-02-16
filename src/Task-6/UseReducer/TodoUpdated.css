@@ -1,0 +1,27 @@
+.btn{
+    width: 5rem;
+    margin-top: 10px;
+    margin-left: 70px;
+}
+
+.inpt{
+    width: 10rem;
+    height: 1.5rem;
+    border-radius: 3px;
+    margin-left: 28px;
+}
+
+.ebtn{
+    width: 5rem;
+    margin-left: 5px;
+}
+
+.ubtn{
+    width: 5rem;
+    margin-left: 5px;
+}
+
+.dbtn{
+    width: 5rem;
+    margin-left: 5px;
+}
