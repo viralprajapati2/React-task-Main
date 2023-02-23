@@ -1,0 +1,41 @@
+.RF {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+  }
+  
+  .FC {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+  }
+  
+  #RB{
+    display: flex;
+  }
+
+  label {
+    font-weight: bold;
+  }
+  
+  input,
+  select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .Error {
+    color: red;
+  }
+  
